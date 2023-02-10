@@ -74,7 +74,8 @@ class _CovidPageState extends State<CovidPage> {
                 Country: (model.countries![index].country).toString(),
                 CountryCode: (model.countries![index].countryCode).toString(),
                 NewConfirmed: (model.countries![index].newConfirmed)!.toInt(),
-                TotalConfirmed:(model.countries![index].totalConfirmed)!.toInt(),
+                TotalConfirmed:
+                    (model.countries![index].totalConfirmed)!.toInt(),
                 TotalDeaths: (model.countries![index].totalDeaths)!.toInt()));
           },
           child: Container(
