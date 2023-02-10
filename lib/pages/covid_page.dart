@@ -23,7 +23,7 @@ class _CovidPageState extends State<CovidPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('COVID-19 List')),
+      appBar: AppBar(title: Text('COVID-19 Takip Platformu')),
       body: _buildListCovid(),
     );
   }
@@ -69,7 +69,13 @@ class _CovidPageState extends State<CovidPage> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            context.router.navigate(CovidDetailRoute(snapShot: index));
+            context.router.navigate(CovidDetailRoute(
+                snapShot: index,
+                Country: (model.countries![index].country).toString(),
+                CountryCode: (model.countries![index].countryCode).toString(),
+                NewConfirmed: (model.countries![index].newConfirmed)!.toInt(),
+                TotalConfirmed:(model.countries![index].totalConfirmed)!.toInt(),
+                TotalDeaths: (model.countries![index].totalDeaths)!.toInt()));
           },
           child: Container(
             margin: EdgeInsets.all(8.0),
@@ -83,11 +89,6 @@ class _CovidPageState extends State<CovidPage> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
-                    /* Text(
-                        "Total Confirmed: ${model.countries![index].totalConfirmed}"),
-                    Text("Total Deaths: ${model.countries![index].totalDeaths}"),
-                    Text(
-                        "Total Recovered: ${model.countries![index].totalRecovered}"), */
                   ],
                 ),
               ),
