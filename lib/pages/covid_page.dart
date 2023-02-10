@@ -67,47 +67,29 @@ class _CovidPageState extends State<CovidPage> {
     return ListView.builder(
       itemCount: model.countries!.length,
       itemBuilder: (context, index) {
-        return Container(
-          margin: EdgeInsets.all(8.0),
-          child: Card(
-            child: Container(
-              margin: EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  Text("Country: ${model.countries![index].country}"),
-                  /* Text(
-                      "Total Confirmed: ${model.countries![index].totalConfirmed}"),
-                  Text("Total Deaths: ${model.countries![index].totalDeaths}"),
-                  Text(
-                      "Total Recovered: ${model.countries![index].totalRecovered}"), */
-                  OutlinedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<OutlinedBorder>(
-                          StadiumBorder()),
-                      side: MaterialStateProperty.resolveWith<BorderSide>(
-                          (Set<MaterialState> states) {
-                        final Color color =
-                            states.contains(MaterialState.pressed)
-                                ? Colors.blue
-                                : Colors.red;
-                        return BorderSide(color: color, width: 2);
-                      }),
+        return InkWell(
+          onTap: () {
+            context.router.navigate(CovidDetailRoute(snapShot: index));
+          },
+          child: Container(
+            margin: EdgeInsets.all(8.0),
+            child: Card(
+              child: Container(
+                margin: EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "${model.countries![index].country}",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
-                    onPressed: () {
-                      /*  Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => CovidDetailPage(
-                            snapShot: index,
-                          ),
-                        ),
-                      );  */
-                      //context.router.pushNamed('/detailspage');
-                      context.router
-                          .navigate(CovidDetailRoute(snapShot: index));
-                    },
-                    child: Text('Detay Sayfasına Git'),
-                  )
-                ],
+                    /* Text(
+                        "Total Confirmed: ${model.countries![index].totalConfirmed}"),
+                    Text("Total Deaths: ${model.countries![index].totalDeaths}"),
+                    Text(
+                        "Total Recovered: ${model.countries![index].totalRecovered}"), */
+                  ],
+                ),
               ),
             ),
           ),
