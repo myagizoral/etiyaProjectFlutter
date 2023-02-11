@@ -4,7 +4,7 @@ import '../models/covid_model.dart';
 
 class ApiProvider {
   final Dio _dio = Dio();
-  final String _url = 'https://api.covid19api.com/summary';
+  final String _url = 'https://mocki.io/v1/2fd05755-f3d9-4cea-9e13-f659088ed613';
 
   Future<CovidModel> fetchCovidList() async {
     try {

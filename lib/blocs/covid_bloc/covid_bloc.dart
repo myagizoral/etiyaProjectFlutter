@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 import '../../models/covid_model.dart';
 import '../../resources/api_repository.dart';
-
 part 'covid_event.dart';
 part 'covid_state.dart';
 
