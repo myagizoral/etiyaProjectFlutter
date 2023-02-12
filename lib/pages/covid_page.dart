@@ -1,12 +1,12 @@
 import 'package:etiya_project/constants/navigator/app_router.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/covid_bloc/covid_bloc.dart';
 import '../models/covid_model.dart';
 import 'package:auto_route/auto_route.dart';
-import 'covid_detail_page.dart';
-import 'dart:developer';
+
+
+import 'classes/functions.dart';
 
 class CovidPage extends StatefulWidget {
   @override
@@ -27,15 +27,44 @@ class _CovidPageState extends State<CovidPage> {
 
   @override
   Widget build(BuildContext context) {
+    final post = Functions();
     return Scaffold(
-      appBar: AppBar(title: Text('COVID-19 Takip Platformu')),
+      key: Key('mainScaffold'),
+      drawer: Drawer(
+          child: Container(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Mustafa Yağız ORAL',
+                style: TextStyle(fontSize: 25),
+              ),
+            ),
+            ListTile(
+              title: Text(post.returnpost()),
+              onTap: () {},
+            ),
+             ListTile(
+              title: Text('v1.0.0'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      )),
+      appBar: AppBar(
+        key: const Key('mainappbar'),
+        title: const Text('COVID-19 Takip Platformu')),
       body: _buildListCovid(),
     );
   }
 
   Widget _buildListCovid() {
     return Container(
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       child: BlocProvider(
         create: (_) => _covidBloc,
         child: BlocListener<CovidBloc, CovidState>(
@@ -75,23 +104,30 @@ class _CovidPageState extends State<CovidPage> {
           height: 20,
         ),
         TextField(
-          onSubmitted: (value) {
-            if (value.toLowerCase() == model.countries![listebul(model, value)].country.toString().toLowerCase()) {
+          key:const Key('inputfield'),
+          style: const TextStyle(color: Colors.red, fontSize: 23),
+          onChanged: (value) {
+            final findindex = Functions();
+            int index = findindex.findIndex(model, value);
+            if (value.toLowerCase() ==
+                model.countries![index].country.toString().toLowerCase()) {
               context.router.navigate(CovidDetailRoute(
                   snapShot: indexSnapshot,
-                  Country: (model.countries![listebul(model, value)].country).toString(),
-                  CountryCode:
-                      (model.countries![listebul(model, value)].countryCode).toString(),
-                  NewConfirmed:
-                      (model.countries![listebul(model, value)].newConfirmed)!.toInt(),
+                  Country: (model.countries![index].country).toString(),
+                  CountryCode: (model.countries![index].countryCode).toString(),
+                  NewConfirmed: (model.countries![index].newConfirmed)!.toInt(),
                   TotalConfirmed:
-                      (model.countries![listebul(model, value)].totalConfirmed)!.toInt(),
-                  TotalDeaths:
-                      (model.countries![listebul(model, value)].totalDeaths)!.toInt()));
+                      (model.countries![index].totalConfirmed)!.toInt(),
+                  TotalDeaths: (model.countries![index].totalDeaths)!.toInt()));
             }
           },
           decoration: const InputDecoration(
-              labelText: 'Search', suffixIcon: Icon(Icons.search)),
+            labelText: 'Ülke Gir :',
+            suffixIcon: Icon(Icons.search),
+            labelStyle:
+                TextStyle(color: Colors.blue, fontSize: 25 
+                    ),
+          ),
         ),
         const SizedBox(
           height: 20,
@@ -119,16 +155,16 @@ class _CovidPageState extends State<CovidPage> {
                 TotalDeaths: (model.countries![index].totalDeaths)!.toInt()));
           },
           child: Container(
-            margin: EdgeInsets.all(8.0),
+            margin:const EdgeInsets.all(8.0),
             child: Card(
               child: Container(
-                margin: EdgeInsets.all(8.0),
+                margin: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
                     Text(
                       "${model.countries![index].country}",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                   ],
                 ),
@@ -140,13 +176,6 @@ class _CovidPageState extends State<CovidPage> {
     );
   }
 
-  Widget _buildLoading() => Center(child: CircularProgressIndicator());
+  Widget _buildLoading() => const Center(child: CircularProgressIndicator());
 
-  listebul(CovidModel model, String value) {
-    for (int i = 0; i <= model.countries!.length; i++) {
-      if (value.toLowerCase() == model.countries![i].country.toString().toLowerCase()) {
-        return i;
-      }
-    }
-  }
 }

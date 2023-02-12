@@ -1,3 +1,4 @@
+
 class CovidModel {
   Global? global;
   List<Countries>? countries;
@@ -124,3 +125,5 @@ class Countries {
     return data;
   }
 }
+
+

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CovidDetailPage extends StatelessWidget {
-   int snapShot;
-   String Country;
-   String CountryCode;
-   int NewConfirmed;
-   int TotalConfirmed;
-   int TotalDeaths;
+  int snapShot;
+  String Country;
+  String CountryCode;
+  int NewConfirmed;
+  int TotalConfirmed;
+  int TotalDeaths;
 
   CovidDetailPage(
       {Key? key,
@@ -46,38 +46,58 @@ class CovidDetailPage extends StatelessWidget {
                       fit: BoxFit.cover),
                 ),
               ),
-              SizedBox(
-                height: 25,
-              ),
               Container(
-                child: Column(
-                  children: [
-                    Text(
-                      'Ülke : $Country',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
-                    ),
-                     Text(
-                      'Ülke Kodu : $CountryCode',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                     Text(
-                      'Yeni Tespitler : $NewConfirmed',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                     Text(
-                      'Toplam Tespit Sayısı : $TotalConfirmed',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                     Text(
-                      'Toplam Ölüm : $TotalDeaths',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          '$Country',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 28,
+                              color: Colors.teal),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '* Ülke Kodu : $CountryCode',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '* Yeni Tespitler : $NewConfirmed',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '* Toplam Tespit Sayısı : $TotalConfirmed',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '* Toplam Ölüm : $TotalDeaths',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

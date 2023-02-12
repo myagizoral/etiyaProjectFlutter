@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../models/covid_model.dart';
@@ -17,7 +18,7 @@ class CovidBloc extends Bloc<CovidEvent, CovidState> {
           emit(CovidError(mList.error));
         }
       } on NetworkError {
-        emit(CovidError("Failed to fetch data. is your device online?"));
+        emit(CovidError("Failed to fetch data."));
       }
     });
     }

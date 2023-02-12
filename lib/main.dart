@@ -1,6 +1,4 @@
-import 'package:etiya_project/pages/covid_page.dart';
 import 'package:flutter/material.dart';
-
 import 'constants/navigator/app_router.dart';
 
 void main() {
@@ -20,10 +18,5 @@ class MyApp extends StatelessWidget {
       title: 'Etiya App',
       debugShowCheckedModeBanner: false,
     );
-    /* return MaterialApp(
-      title: 'Etiya App',
-      debugShowCheckedModeBanner: false,
-      home: CovidPage(),
-    ); */
   }
 }
